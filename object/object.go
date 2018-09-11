@@ -27,6 +27,10 @@ func (obj Object) has(key string) bool {
 }
 
 func (obj Object) isValid() bool {
+	if len(obj) != 2 {
+		return false
+	}
+
 	if !obj.has(action) {
 		return false
 	}
@@ -46,7 +50,7 @@ func Parse(str string) (Object, error) {
 		return nil, err
 	}
 
-	if obj.isValid() {
+	if !obj.isValid() {
 		return nil, errors.New("invalid format")
 	}
 
